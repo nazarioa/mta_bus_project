@@ -1,0 +1,32 @@
+latitude
+  double unsigned
+
+longitude
+  double unsigned
+
+time_received
+  ?
+
+vehicle_id
+  int - unsigned
+
+distance_along_trip
+  double - ?
+
+inferred_direction_id
+  int (binary)
+
+inferred_phase
+  string
+
+inferred_route_id
+  string
+
+inferred_trip_id
+  string
+
+next_scheduled_stop_distance
+  double
+
+next_scheduled_stop_id
+  string
