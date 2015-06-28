@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map Test</title>
+  <style type="text/css">
+    html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+  </style>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&key=AIzaSyBbsX5Xv5nZisEuhjDqjYsHSroizs9rOV4">
+  </script>
+  <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script> -->
+
+</head>
+<body>
+  <div id="map-canvas"></div>
+
+  <script type="text/javascript">
+  /*
+  https://developers.google.com/maps/documentation/javascript/datalayer
+  */
+
+  var map;
+  function initialize() {
+    // Create a simple map.
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 4,
+      center: {lat: -28, lng: 137.883}
+    });
+
+    // Load a GeoJSON from the same server as our demo.
+    // map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
+    // map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google_demo_data.json');
+    map.data.loadGeoJson('google_demo_data.json');
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+</body>
+</html>
