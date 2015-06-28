@@ -15,22 +15,62 @@
   <div id="map-canvas"></div>
 
   <script type="text/javascript">
-  /*
-  https://developers.google.com/maps/documentation/javascript/datalayer
-  */
 
-  var map;
   function initialize() {
-    // Create a simple map.
-    map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 4,
-      center: {lat: -28, lng: 137.883}
+    /*
+    There are six coordinates that I had to manually order. Otherwise the route was nonsensical.
+    I have a feeling that these six coordiantes were the six that took us from 21 stops to 27 stops
+    on a previous query.
+
+    Theis route is partially validated with googles suggestion for a route (from stop 1 to stop last).
+    https://www.google.com/maps/dir/40.608531,-73.957395/40.606791,+-73.916037/@40.6105346,-73.9328786,15z/am=t/data=!4m7!4m6!1m0!1m3!2m2!1d-73.916037!2d40.606791!3e3
+    */
+    var stops = [
+      new google.maps.LatLng(40.608531, -73.957395),
+      new google.maps.LatLng(40.609406, -73.947669),
+      new google.maps.LatLng(40.608856, -73.943112),
+      new google.maps.LatLng(40.606877, -73.940726),
+      new google.maps.LatLng(40.608284, -73.938015),
+      new google.maps.LatLng(40.609641, -73.935845),
+      new google.maps.LatLng(40.611152, -73.933554),
+      new google.maps.LatLng(40.61207, -73.932113), //
+      new google.maps.LatLng(40.612455, -73.931526),
+      new google.maps.LatLng(40.612911, -73.930717), //
+      new google.maps.LatLng(40.614129, -73.928932),
+      new google.maps.LatLng(40.614405, -73.927027),
+      new google.maps.LatLng(40.614655, -73.923963),
+      new google.maps.LatLng(40.61486, -73.920904),
+      new google.maps.LatLng(40.61484, -73.91957),
+      new google.maps.LatLng(40.616113, -73.917065), //
+      new google.maps.LatLng(40.616565, -73.915026),
+      new google.maps.LatLng(40.617191, -73.911035),
+      new google.maps.LatLng(40.616023, -73.9095),//
+      new google.maps.LatLng(40.615772, -73.90916),
+      new google.maps.LatLng(40.612288, -73.906697),
+      new google.maps.LatLng(40.609829, -73.907086),
+      new google.maps.LatLng(40.608905, -73.907618),//
+      new google.maps.LatLng(40.606711, -73.909969),
+      new google.maps.LatLng(40.604599, -73.913274),
+      new google.maps.LatLng(40.60649, -73.915772),
+      new google.maps.LatLng(40.606791, -73.916037)//
+    ];
+
+    var mapOptions = {
+      zoom: 15,
+      center: new google.maps.LatLng( stops[Math.round(stops.length/2)].A, stops[Math.round(stops.length/2)].F )
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    var busRoute = new google.maps.Polyline({
+      path: stops,
+      geodesic: true,
+      strokeColor: '#b4923b',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
     });
 
-    // Load a GeoJSON from the same server as our demo.
-    // map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
-    // map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google_demo_data.json');
-    map.data.loadGeoJson('google_demo_data.json');
+    busRoute.setMap(map);
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
