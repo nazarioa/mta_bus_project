@@ -10,3 +10,5 @@
 <p>After I showed my friend how to import the data in MySQL, I started playing around with the data. Needless to say I got hooked.</p>
 
 <p>This project is to describe my progress as it relates to giving the data volume and providing basic analysis of the data. At the point of git-init I had already made some headway.</p>
+
+<p>Christie's cool</p>
